@@ -35,8 +35,6 @@ def get_temp_for_region(api_key, region_name):
         _readable_string = "In " + _location + ", it's currently " + str(_temp_f) + \
         " degrees and " + _weather_description + ". "
         
-        print("Current temperature in %s is: %s" % (_location, _temp_f))
-        
         # keep as float because will need to do mathematical comparison.
         # Convert to string later as nec.
         cached_weather_data[region_name] = {
