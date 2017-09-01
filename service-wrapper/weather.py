@@ -60,15 +60,21 @@ def is_good_weather(input_region):
     input_region -- A data structure containing the relevant weather data for a region
                     as returned by the web service and processed by our wrapper.
     """
+    precipitation_descriptions = [
+        "flurries",
+        "sleet",
+        "rain",
+        "snow",
+        "tstorms"
+    ]
     if (input_region['temp'] - input_region['average_temp'] >= 5):
         # If we're 5 degrees above average temp
         return 1
-    if input_region['description'] is 'sunny': # or if it's sunny
+    if input_region['description'] is 'clear': # or if it's sunny
         return 1
     # If we're 5 degrees below average temp
     if (input_region['temp'] - input_region['average_temp'] <= -5):
         return -1
-    # not sure if "rainy" is correct, couldn't find doc for this field.
-    if input_region['description'] is 'rainy':
+    if precipitation_descriptions.count(input_region['description']) == 1:
         return -1
     return 0
