@@ -4,7 +4,7 @@ from .service import call_restful_service
 
 cached_weather_data = dict()
 
-def get_temp_for_region(region_name):
+def get_temp_for_region(api_key, region_name):
     """Wrapper for getting weather data from the WeatherUnderground API service.
     This method will cache results so that additional calls to the weather service can be avoided
     when we have already retrieved weather data for the same region for another subscriber.
@@ -17,8 +17,8 @@ def get_temp_for_region(region_name):
     _now = datetime.datetime.now()
     if (region_name not in cached_weather_data or
         cached_weather_data[region_name]['dateretrieved'] < _now - datetime.timedelta(seconds=60)):
-        _url_template='http://api.wunderground.com/api/3a506d8e3255df14/geolookup/conditions/almanac/q/{0}.json'
-        _url_composed = _url_template.format(region_name)
+        _url_template='http://api.wunderground.com/api/{0}/geolookup/conditions/almanac/q/{1}.json'
+        _url_composed = _url_template.format(api_key, region_name)
         _parsed_json=call_restful_service(_url_composed)
         
         if not 'location' in _parsed_json: # handle case where we were passed a bad value
