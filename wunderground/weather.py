@@ -1,6 +1,6 @@
 ﻿import datetime
 
-from service import call_restful_service
+from .service import call_restful_service
 
 cached_weather_data = dict()
 
