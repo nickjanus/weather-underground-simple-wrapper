@@ -25,13 +25,11 @@ def get_temp_for_region(api_key, region_name):
             return
         _location = _parsed_json['location']['city']
         _temp_f = _parsed_json['current_observation']['temp_f']
-        _weather_description = _parsed_json['current_observation']['icon']
+        _weather_icon = _parsed_json['current_observation']['icon']
+        _weather_description = _parsed_json['current_observation']['weather']
         _normal_high_f = float(_parsed_json['almanac']['temp_high']['normal']['F'])
         _normal_low_f = float(_parsed_json['almanac']['temp_low']['normal']['F'])
         _average_f = (_normal_high_f + _normal_low_f) / 2
-        # can we do better than the icon field for description?  consider
-        # "partlycloudy"
-        # possibly a translation table
         _readable_string = "In " + _location + ", it's currently " + str(_temp_f) + \
         " degrees and " + _weather_description + ". "
         
@@ -41,6 +39,7 @@ def get_temp_for_region(api_key, region_name):
             'temp':_temp_f,
             'dateretrieved':datetime.datetime.now(),
             'average_temp':_average_f,
+            'icon': _weather_icon,
             'description': _weather_description,
             'readable_string':_readable_string
             }
