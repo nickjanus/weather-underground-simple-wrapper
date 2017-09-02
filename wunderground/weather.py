@@ -30,7 +30,7 @@ def get_temp_for_region(api_key, region_name):
         _normal_high_f = float(_parsed_json['almanac']['temp_high']['normal']['F'])
         _normal_low_f = float(_parsed_json['almanac']['temp_low']['normal']['F'])
         _average_f = (_normal_high_f + _normal_low_f) / 2
-        _readable_string = "In " + _location + ", it's currently " + str(_temp_f) + \
+        _readable_string = "Current conditions in " + _location + ": " + str(_temp_f) + \
         " degrees and " + _weather_description + ". "
         
         # keep as float because will need to do mathematical comparison.
