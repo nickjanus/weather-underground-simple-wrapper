@@ -72,6 +72,7 @@ def is_good_weather(input_region):
     # If we're 5 degrees below average temp
     if (input_region['temp'] - input_region['average_temp'] <= -5):
         return -1
-    if precipitation_descriptions.count(input_region['description']) == 1:
+    # Easier to use icon here since the whole set of icons is available as part of the API documentation
+    if precipitation_descriptions.count(input_region['icon']) == 1:
         return -1
     return 0
